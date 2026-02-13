@@ -1,0 +1,52 @@
+06:59:16 **** Incremental Build of configuration Debug for project Kontrol_SeaNatuners ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:148:33: warning: passing argument 2 of 'HAL_UART_Receive_IT' from incompatible pointer type [-Wincompatible-pointer-types]
+  148 |    HAL_UART_Receive_IT(&huart1, RxData, 32);
+      |                                 ^~~~~~
+      |                                 |
+      |                                 int *
+In file included from ../Core/Inc/stm32f1xx_hal_conf.h:338,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:752:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'int *'
+  752 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:678:20: warning: comparison between pointer and integer
+  678 |         if (RxData == '\n') {
+      |                    ^~
+../Core/Src/main.c:683:31: warning: assignment to 'uint32_t' {aka 'long unsigned int'} from 'int *' makes integer from pointer without a cast [-Wint-conversion]
+  683 |             RxBuffer[index++] = RxData;  // Simpan data ke buffer
+      |                               ^
+../Core/Src/main.c:689:38: warning: passing argument 2 of 'HAL_UART_Receive_IT' from incompatible pointer type [-Wincompatible-pointer-types]
+  689 |         HAL_UART_Receive_IT(&huart1, &RxData, sizeof(RxData));  // Terima byte berikutnya
+      |                                      ^~~~~~~
+      |                                      |
+      |                                      int (*)[4]
+In file included from ../Core/Inc/stm32f1xx_hal_conf.h:338,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:752:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'int (*)[4]'
+  752 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "Kontrol_SeaNatuners.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Azk\ITS\PKM\SeaNatuners\SKEMA PENDANAAN\Program_STM_SeaNatuners\Kontrol_SeaNatuners\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Kontrol_SeaNatuners.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Kontrol_SeaNatuners.elf
+ 
+arm-none-eabi-size   Kontrol_SeaNatuners.elf 
+arm-none-eabi-objdump -h -S  Kontrol_SeaNatuners.elf  > "Kontrol_SeaNatuners.list"
+arm-none-eabi-objcopy  -O binary  Kontrol_SeaNatuners.elf  "Kontrol_SeaNatuners.bin"
+   text	   data	    bss	    dec	    hex	filename
+  18260	     20	   2508	  20788	   5134	Kontrol_SeaNatuners.elf
+Finished building: default.size.stdout
+ 
+Finished building: Kontrol_SeaNatuners.bin
+ 
+Finished building: Kontrol_SeaNatuners.list
+ 
+
+06:59:18 Build Finished. 0 errors, 4 warnings. (took 1s.22ms)
+

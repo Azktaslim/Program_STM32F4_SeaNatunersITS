@@ -1,0 +1,1 @@
+Core/Src/FLASH_SECTOR_H7.o: ../Core/Src/FLASH_SECTOR_H7.c
